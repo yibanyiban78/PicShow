@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+.idea/
+.vscode/
+.nuget-local/
+*.user
+*.suo
+*.cache
+*.log
+TestResults/
