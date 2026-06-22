@@ -16,12 +16,14 @@ public partial class MainWindow : Window
     private const double PreviewWindowRatio = 0.85;
     private const double ZoomStep = 1.1;
     private const double MinimumWindowImageMaxSide = 100.0;
+    private const double WelcomeCornerRadius = 10.0;
     private const int ControlsAutoHideDelayMs = 2000;
     private static readonly Duration ControlsFadeDuration = TimeSpan.FromMilliseconds(100);
     private const int DwmWindowCornerPreference = 33;
     private const int DwmWindowCornerPreferenceDoNotRound = 1;
 
     private bool initialSizeApplied;
+    private bool isPreviewMode;
     private System.Windows.Size? currentBitmapSize;
     private readonly DispatcherTimer controlsAutoHideTimer;
 
@@ -38,12 +40,23 @@ public partial class MainWindow : Window
 
     private MainViewModel ViewModel => (MainViewModel)DataContext;
 
+    public void LoadStartupFile(string path)
+    {
+        ViewModel.LoadFile(path);
+    }
+
     [DllImport("dwmapi.dll")]
     private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attribute, ref int value, int size);
 
+    [DllImport("gdi32.dll")]
+    private static extern IntPtr CreateRoundRectRgn(int left, int top, int right, int bottom, int width, int height);
+
+    [DllImport("user32.dll")]
+    private static extern int SetWindowRgn(IntPtr hwnd, IntPtr region, bool redraw);
+
     private void Window_SourceInitialized(object? sender, EventArgs e)
     {
-        DisableRoundedCorners();
+        ApplyWelcomeRoundedCorners();
     }
 
     private void DisableRoundedCorners()
@@ -51,12 +64,48 @@ public partial class MainWindow : Window
         try
         {
             var hwnd = new WindowInteropHelper(this).Handle;
+            _ = SetWindowRgn(hwnd, IntPtr.Zero, true);
             var preference = DwmWindowCornerPreferenceDoNotRound;
             _ = DwmSetWindowAttribute(hwnd, DwmWindowCornerPreference, ref preference, sizeof(int));
         }
         catch
         {
             // Older Windows versions simply ignore this visual refinement.
+        }
+    }
+
+    private void ApplyWelcomeRoundedCorners()
+    {
+        if (isPreviewMode)
+        {
+            return;
+        }
+
+        try
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            if (hwnd == IntPtr.Zero || ActualWidth <= 0 || ActualHeight <= 0)
+            {
+                return;
+            }
+
+            var source = PresentationSource.FromVisual(this);
+            var scaleX = source?.CompositionTarget?.TransformToDevice.M11 ?? 1.0;
+            var scaleY = source?.CompositionTarget?.TransformToDevice.M22 ?? 1.0;
+            var width = Math.Max(1, (int)Math.Round(ActualWidth * scaleX));
+            var height = Math.Max(1, (int)Math.Round(ActualHeight * scaleY));
+            var cornerWidth = Math.Max(1, (int)Math.Round(WelcomeCornerRadius * 2 * scaleX));
+            var cornerHeight = Math.Max(1, (int)Math.Round(WelcomeCornerRadius * 2 * scaleY));
+            var region = CreateRoundRectRgn(0, 0, width + 1, height + 1, cornerWidth, cornerHeight);
+
+            if (region != IntPtr.Zero)
+            {
+                _ = SetWindowRgn(hwnd, region, true);
+            }
+        }
+        catch
+        {
+            // Region clipping is a cosmetic welcome-page detail.
         }
     }
 
@@ -78,10 +127,18 @@ public partial class MainWindow : Window
         Width = Math.Max(MinWidth, bounds.Width * WelcomeWindowRatio);
         Height = Math.Max(MinHeight, bounds.Height * WelcomeWindowRatio);
         CenterInside(bounds);
+        ApplyWelcomeRoundedCorners();
+    }
+
+    private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        ApplyWelcomeRoundedCorners();
     }
 
     private void PreviewSurface_BitmapLoaded(object? sender, System.Windows.Size bitmapSize)
     {
+        isPreviewMode = true;
+        DisableRoundedCorners();
         currentBitmapSize = bitmapSize;
         ShowWindowControls();
         RestartControlsAutoHideTimer();

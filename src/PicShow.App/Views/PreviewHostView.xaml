@@ -35,6 +35,94 @@
                    MouseLeave="PreviewImage_MouseLeave" />
         </Canvas>
 
+        <Grid x:Name="WelcomePanel"
+              Background="{StaticResource WelcomeBackgroundBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1"
+                        Margin="48,0"
+                        HorizontalAlignment="Center">
+                <Image Width="76"
+                       Height="76"
+                       HorizontalAlignment="Center"
+                       Source="/Resources/AppIcon.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       RenderOptions.EdgeMode="Unspecified"
+                       SnapsToDevicePixels="True"
+                       UseLayoutRounding="True" />
+
+                <TextBlock Text="PicShow"
+                           Margin="0,22,0,0"
+                           FontSize="34"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource PrimaryTextBrush}"
+                           TextAlignment="Center" />
+                <TextBlock Text="轻量图片查看器"
+                           Margin="0,8,0,0"
+                           FontSize="15"
+                           Foreground="{StaticResource SecondaryTextBrush}"
+                           TextAlignment="Center" />
+
+                <Border Width="520"
+                        Margin="0,28,0,0"
+                        Padding="28,22"
+                        Background="#22111821"
+                        BorderBrush="#22FFFFFF"
+                        BorderThickness="1"
+                        CornerRadius="12">
+                    <StackPanel>
+                        <TextBlock Text="拖入图片开始查看"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource PrimaryTextBrush}"
+                                   TextAlignment="Center" />
+                        <TextBlock Text="也可以按 Ctrl + O 打开文件"
+                                   Margin="0,8,0,0"
+                                   FontSize="14"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   TextAlignment="Center" />
+
+                        <Button Content="打开图片"
+                                Command="{Binding OpenFileCommand}"
+                                Style="{StaticResource WelcomeOpenButton}"
+                                Margin="0,18,0,0"
+                                HorizontalAlignment="Center" />
+
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Margin="0,22,0,0"
+                            HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource WelcomeHintText}">
+                            <Run Text="滚动鼠标滚轮" FontWeight="SemiBold" />
+                            <Run Text=" | " FontWeight="Regular" />
+                            <Run Text="放大或缩小" FontWeight="Regular" />
+                        </TextBlock>
+                        <TextBlock Width="42" />
+                        <TextBlock Style="{StaticResource WelcomeHintText}">
+                            <Run Text="键盘左右方向键" FontWeight="SemiBold" />
+                            <Run Text=" | " FontWeight="Regular" />
+                            <Run Text="上一张/下一张" FontWeight="Regular" />
+                        </TextBlock>
+                    </StackPanel>
+
+                    <TextBlock Text="当前支持 JPG、PNG、BMP、TIFF、ICO 格式"
+                               Style="{StaticResource WelcomeMetaText}" />
+                    <Border Height="12" />
+                    <TextBlock Text="v1.0.0"
+                               Style="{StaticResource WelcomeMetaText}" />
+                    <TextBlock Text="软件作者：壹伴壹伴，欢迎抖音联系，此为开源免费软件，欢迎传播共享，就是不爽 WPS 弹窗广告"
+                               Style="{StaticResource WelcomeAuthorText}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
         <Border x:Name="MessagePanel"
                 Margin="24"
                 BorderBrush="{StaticResource BorderBrush}"
@@ -43,16 +131,17 @@
                 Padding="24"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                MaxWidth="560">
+                MaxWidth="560"
+                Visibility="Collapsed">
             <StackPanel>
                 <TextBlock x:Name="MessageTitle"
-                           Text="请选择或拖入图片/PDF"
+                           Text="无法预览"
                            FontSize="22"
                            Foreground="{StaticResource PrimaryTextBrush}"
                            TextAlignment="Center"
                            TextWrapping="Wrap" />
                 <TextBlock x:Name="MessageDetail"
-                           Text="当前基础版支持 JPG、PNG、BMP、TIFF、ICO 的静态预览。GIF/SVG/PSD/PDF 将在后续步骤接入专用渲染器。"
+                           Text=""
                            Margin="0,12,0,0"
                            Foreground="{StaticResource SecondaryTextBrush}"
                            TextAlignment="Center"

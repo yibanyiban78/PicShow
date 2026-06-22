@@ -162,6 +162,7 @@ public partial class PreviewHostView : System.Windows.Controls.UserControl
 
             currentBitmap = bitmap;
             PreviewImage.Source = bitmap;
+            WelcomePanel.Visibility = Visibility.Collapsed;
             MessagePanel.Visibility = Visibility.Collapsed;
             BitmapLoaded?.Invoke(this, new System.Windows.Size(bitmap.Width, bitmap.Height));
             FitToView();
@@ -355,11 +356,13 @@ public partial class PreviewHostView : System.Windows.Controls.UserControl
 
     private void ShowDefaultMessage()
     {
-        ShowMessage("请选择或拖入图片/PDF", "当前基础版支持 JPG、PNG、BMP、TIFF、ICO 的静态预览。GIF/SVG/PSD/PDF 将在后续步骤接入专用渲染器。");
+        WelcomePanel.Visibility = Visibility.Visible;
+        MessagePanel.Visibility = Visibility.Collapsed;
     }
 
     private void ShowMessage(string title, string detail)
     {
+        WelcomePanel.Visibility = Visibility.Collapsed;
         MessageTitle.Text = title;
         MessageDetail.Text = detail;
         MessagePanel.Visibility = Visibility.Visible;

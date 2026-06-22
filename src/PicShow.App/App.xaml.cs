@@ -1,3 +1,6 @@
+using System.IO;
+using System.Windows;
+
 namespace PicShow;
 
 public partial class App : System.Windows.Application
@@ -25,5 +28,20 @@ public partial class App : System.Windows.Application
                     System.Windows.MessageBoxImage.Error);
             }
         };
+    }
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        var window = new MainWindow();
+        MainWindow = window;
+        window.Show();
+
+        var startupFile = e.Args.FirstOrDefault(File.Exists);
+        if (!string.IsNullOrWhiteSpace(startupFile))
+        {
+            window.LoadStartupFile(startupFile);
+        }
     }
 }

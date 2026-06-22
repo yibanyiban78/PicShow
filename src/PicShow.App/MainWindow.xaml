@@ -14,6 +14,7 @@
         AllowDrop="True"
         Loaded="Window_Loaded"
         SourceInitialized="Window_SourceInitialized"
+        SizeChanged="Window_SizeChanged"
         Drop="Window_Drop"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         KeyDown="Window_KeyDown">
