@@ -25,8 +25,21 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Create CI NuGet config
+        shell: pwsh
+        run: |
+          @'
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <clear />
+              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+            </packageSources>
+          </configuration>
+          '@ | Set-Content -Path NuGet.Actions.config -Encoding utf8
+
       - name: Restore
-        run: dotnet restore PicShow.sln
+        run: dotnet restore PicShow.sln --configfile NuGet.Actions.config
 
       - name: Build
         run: dotnet build PicShow.sln --configuration ${{ matrix.configuration }} --no-restore
@@ -46,12 +59,26 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Create CI NuGet config
+        shell: pwsh
+        run: |
+          @'
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <clear />
+              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+            </packageSources>
+          </configuration>
+          '@ | Set-Content -Path NuGet.Actions.config -Encoding utf8
+
       - name: Publish
         run: >
           dotnet publish .\src\PicShow.App\PicShow.App.csproj
           --configuration Release
           --runtime win-x64
           --self-contained false
+          --configfile NuGet.Actions.config
           -p:PublishSingleFile=true
           -p:IncludeNativeLibrariesForSelfExtract=true
           --output .\publish\win-x64
