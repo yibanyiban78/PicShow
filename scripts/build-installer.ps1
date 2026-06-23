@@ -67,4 +67,4 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host "Done."
-Write-Host (Join-Path $repoRoot "publish\installer\PicShow-v1.0.0-setup-win-x64.exe")
+Write-Host (Join-Path $repoRoot "publish\installer\PicShow-v1.1.0-setup-win-x64.exe")

@@ -1,26 +1,15 @@
-# PicShow 图片秀
+﻿# PicShow 鍥剧墖绉€
 
-![PicShow 截图](docs/images/screenshot.png)
+![PicShow 鎴浘](docs/images/screenshot.png)
 
-## 中文版
+## 涓枃鐗?
+PicShow 鍥剧墖绉€鏄竴涓潰鍚?Windows 10 鍙婁互涓婄増鏈殑杞婚噺绾у浘鐗囨煡鐪嬪櫒锛屼笓娉ㄤ簬骞插噣銆佸揩閫熴€佸皯鎵撴壈鐨勭湅鍥句綋楠屻€?
+鍏嶈垂寮€婧愶紝娆㈣繋浼犳挱鍏变韩銆傚仛瀹冪殑鍘熷洜寰堢畝鍗曪細灏辨槸涓嶇埥鏌愪簺鐪嬪浘杞欢鐨勫脊绐楀箍鍛娿€?
+### 鍔熻兘鐗规€?
+- 鏃犺竟妗嗗浘鐗囬瑙堢獥鍙ｏ紝鎵撳紑鍥剧墖鍚庝細鏍规嵁鍥剧墖鍜屽睆骞曞昂瀵歌嚜閫傚簲銆?- 鏀寔榧犳爣婊氳疆缂╂斁锛涘浘鐗囧ぇ浜庣獥鍙ｆ椂鍙嫋鍔ㄦ煡鐪嬨€?- 鏀寔閿洏宸﹀彸鏂瑰悜閿垏鎹笂涓€寮?/ 涓嬩竴寮犮€?- 鏀寔 PNG 绛夊甫閫忔槑閫氶亾鍥剧墖鐨勯€忔槑鑳屾櫙鏄剧ず銆?- 鍚姩椤垫敮鎸佹嫋鍏ュ浘鐗囧拰 `Ctrl+O` 鎵撳紑鍥剧墖銆?- 璁剧疆涓哄浘鐗囨墦寮€绋嬪簭鍚庯紝鏀寔鍙屽嚮鍥剧墖鐩存帴鐢?PicShow 鎵撳紑銆?- 鎻愪緵 Windows 瀹夎鍖咃紝瀹夎鐣岄潰鏀寔绠€浣撲腑鏂囥€?
+### 褰撳墠鏍煎紡鏀寔
 
-PicShow 图片秀是一个面向 Windows 10 及以上版本的轻量级图片查看器，专注于干净、快速、少打扰的看图体验。
-
-免费开源，欢迎传播共享。做它的原因很简单：就是不爽某些看图软件的弹窗广告。
-
-### 功能特性
-
-- 无边框图片预览窗口，打开图片后会根据图片和屏幕尺寸自适应。
-- 支持鼠标滚轮缩放；图片大于窗口时可拖动查看。
-- 支持键盘左右方向键切换上一张 / 下一张。
-- 支持 PNG 等带透明通道图片的透明背景显示。
-- 启动页支持拖入图片和 `Ctrl+O` 打开图片。
-- 设置为图片打开程序后，支持双击图片直接用 PicShow 打开。
-- 提供 Windows 安装包，安装界面支持简体中文。
-
-### 当前格式支持
-
-当前已实现：
+褰撳墠宸插疄鐜帮細
 
 - JPG / JPEG
 - PNG
@@ -29,106 +18,82 @@ PicShow 图片秀是一个面向 Windows 10 及以上版本的轻量级图片查
 - ICO
 - WebP
 
-计划支持：
+璁″垝鏀寔锛?
+- 鍔ㄦ€?GIF 鎾斁
+- SVG 棰勮
+- PSD 鍚堟垚鍥鹃瑙?- PDF 棰勮
 
-- 动态 GIF 播放
-- SVG 预览
-- PSD 合成图预览
-- PDF 预览
+### 涓嬭浇
 
-### 下载
+鍙粠 GitHub Release 涓嬭浇鏈€鏂扮増鏈細
 
-可从 GitHub Release 下载最新版本：
+[PicShow v1.1.0 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.1.0)
 
-[PicShow v1.0.0 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.0.0)
+鎺ㄨ崘涓嬭浇锛?
+- `PicShow-v1.1.0-setup-win-x64.exe`锛氳嚜鍖呭惈 Windows 瀹夎鍖咃紝鐢ㄦ埛鏃犻渶棰濆瀹夎 .NET 杩愯鏃躲€?
+渚挎惡鐗堬細
 
-推荐下载：
+- `PicShow-v1.1.0-win-x64.zip`锛氫究鎼虹増鍙墽琛屾枃浠跺帇缂╁寘銆?
+### 杩愯瑕佹眰
 
-- `PicShow-v1.0.0-setup-win-x64.exe`：自包含 Windows 安装包，用户无需额外安装 .NET 运行时。
+鑷寘鍚畨瑁呭寘锛?
+- Windows 10 鎴栨洿楂樼増鏈?
+寮€鍙戠幆澧冿細
 
-便携版：
-
-- `PicShow-v1.0.0-win-x64.zip`：便携版可执行文件压缩包。
-
-### 运行要求
-
-自包含安装包：
-
-- Windows 10 或更高版本
-
-开发环境：
-
-- Windows 10 或更高版本
-- .NET 8 SDK
-- Inno Setup 6，仅在需要生成安装包时使用
-
-### 从源码构建
-
-还原并构建：
+- Windows 10 鎴栨洿楂樼増鏈?- .NET 8 SDK
+- Inno Setup 6锛屼粎鍦ㄩ渶瑕佺敓鎴愬畨瑁呭寘鏃朵娇鐢?
+### 浠庢簮鐮佹瀯寤?
+杩樺師骞舵瀯寤猴細
 
 ```powershell
 dotnet restore
 dotnet build
 ```
 
-运行程序：
-
+杩愯绋嬪簭锛?
 ```powershell
 dotnet run --project src/PicShow.App
 ```
 
-发布单文件可执行程序：
-
+鍙戝竷鍗曟枃浠跺彲鎵ц绋嬪簭锛?
 ```powershell
 dotnet publish .\src\PicShow.App\PicShow.App.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o .\publish\win-x64
 ```
 
-### 生成安装包
-
-请先安装 Inno Setup 6：
-
+### 鐢熸垚瀹夎鍖?
+璇峰厛瀹夎 Inno Setup 6锛?
 [https://jrsoftware.org/isdl.php](https://jrsoftware.org/isdl.php)
 
-生成普通安装包：
-
+鐢熸垚鏅€氬畨瑁呭寘锛?
 ```powershell
 .\scripts\build-installer.ps1
 ```
 
-生成自包含安装包：
-
+鐢熸垚鑷寘鍚畨瑁呭寘锛?
 ```powershell
 .\scripts\build-installer.ps1 -SelfContained
 ```
 
-输出文件：
-
+杈撳嚭鏂囦欢锛?
 ```text
-publish\installer\PicShow-v1.0.0-setup-win-x64.exe
+publish\installer\PicShow-v1.1.0-setup-win-x64.exe
 ```
 
-### 文件关联说明
+### 鏂囦欢鍏宠仈璇存槑
 
-安装包会把 PicShow 注册到受支持图片格式的“打开方式”和“默认应用”列表中。现代 Windows 会保护默认应用设置，因此安装程序不能可靠地强制把 PicShow 设为默认图片查看器，通常仍需要用户确认。
-
-将 PicShow 设置为默认图片查看器后，双击图片会以类似方式启动：
-
+瀹夎鍖呬細鎶?PicShow 娉ㄥ唽鍒板彈鏀寔鍥剧墖鏍煎紡鐨勨€滄墦寮€鏂瑰紡鈥濆拰鈥滈粯璁ゅ簲鐢ㄢ€濆垪琛ㄤ腑銆傜幇浠?Windows 浼氫繚鎶ら粯璁ゅ簲鐢ㄨ缃紝鍥犳瀹夎绋嬪簭涓嶈兘鍙潬鍦板己鍒舵妸 PicShow 璁句负榛樿鍥剧墖鏌ョ湅鍣紝閫氬父浠嶉渶瑕佺敤鎴风‘璁ゃ€?
+灏?PicShow 璁剧疆涓洪粯璁ゅ浘鐗囨煡鐪嬪櫒鍚庯紝鍙屽嚮鍥剧墖浼氫互绫讳技鏂瑰紡鍚姩锛?
 ```powershell
 PicShow.exe "C:\Path\To\Image.png"
 ```
 
-PicShow 已支持此启动参数，会直接打开对应图片。
+PicShow 宸叉敮鎸佹鍚姩鍙傛暟锛屼細鐩存帴鎵撳紑瀵瑰簲鍥剧墖銆?
+### 浣滆€?
+杞欢浣滆€咃細澹逛即澹逛即
 
-### 作者
-
-软件作者：壹伴壹伴
-
-欢迎通过抖音联系。
-
-### 许可证
-
-本项目开源免费，欢迎传播共享。
-
+娆㈣繋閫氳繃鎶栭煶鑱旂郴銆?
+### 璁稿彲璇?
+鏈」鐩紑婧愬厤璐癸紝娆㈣繋浼犳挱鍏变韩銆?
 ---
 
 ## English Version
@@ -169,15 +134,15 @@ Planned:
 
 Download the latest release from GitHub:
 
-[PicShow v1.0.0 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.0.0)
+[PicShow v1.1.0 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.1.0)
 
 Recommended download:
 
-- `PicShow-v1.0.0-setup-win-x64.exe`: self-contained Windows installer, no extra .NET runtime required.
+- `PicShow-v1.1.0-setup-win-x64.exe`: self-contained Windows installer, no extra .NET runtime required.
 
 Portable option:
 
-- `PicShow-v1.0.0-win-x64.zip`: portable executable package.
+- `PicShow-v1.1.0-win-x64.zip`: portable executable package.
 
 ### Requirements
 
@@ -233,7 +198,7 @@ Build the self-contained installer:
 Output:
 
 ```text
-publish\installer\PicShow-v1.0.0-setup-win-x64.exe
+publish\installer\PicShow-v1.1.0-setup-win-x64.exe
 ```
 
 ### File Association Notes
@@ -250,10 +215,11 @@ PicShow supports this startup path and opens the image directly.
 
 ### Author
 
-Software author: 壹伴壹伴
+Software author: 澹逛即澹逛即
 
 Welcome to contact me on Douyin.
 
 ### License
 
 This project is open source and free to share.
+

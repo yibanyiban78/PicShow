@@ -337,9 +337,70 @@ public partial class MainWindow : Window
         }
     }
 
+    private void ImageEditToolbar_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+    {
+        if (currentBitmapSize is not null)
+        {
+            ShowWindowControls();
+            RestartControlsAutoHideTimer();
+        }
+    }
+
+    private void ImageEditToolbar_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+    {
+        if (currentBitmapSize is not null)
+        {
+            ShowWindowControls();
+            RestartControlsAutoHideTimer();
+        }
+    }
+
     private void ActualSizeButton_Click(object sender, RoutedEventArgs e)
     {
         PreviewSurface.ActualSize();
+    }
+
+    private void RotateCounterClockwiseButton_Click(object sender, RoutedEventArgs e)
+    {
+        PreviewSurface.RotateCounterClockwise();
+        ShowWindowControls();
+        RestartControlsAutoHideTimer();
+    }
+
+    private void RotateClockwiseButton_Click(object sender, RoutedEventArgs e)
+    {
+        PreviewSurface.RotateClockwise();
+        ShowWindowControls();
+        RestartControlsAutoHideTimer();
+    }
+
+    private void FlipHorizontalButton_Click(object sender, RoutedEventArgs e)
+    {
+        PreviewSurface.FlipHorizontal();
+        ShowWindowControls();
+        RestartControlsAutoHideTimer();
+    }
+
+    private void FlipVerticalButton_Click(object sender, RoutedEventArgs e)
+    {
+        PreviewSurface.FlipVertical();
+        ShowWindowControls();
+        RestartControlsAutoHideTimer();
+    }
+
+    private void SaveImageButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            PreviewSurface.SaveCurrentImageEdits();
+        }
+        catch (Exception exception)
+        {
+            System.Windows.MessageBox.Show(this, exception.Message, "PicShow", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        ShowWindowControls();
+        RestartControlsAutoHideTimer();
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -362,11 +423,13 @@ public partial class MainWindow : Window
     private void ShowWindowControls()
     {
         FadeWindowControlsTo(1);
+        FadeImageEditToolbarTo(1);
     }
 
     private void HideWindowControls()
     {
         FadeWindowControlsTo(0);
+        FadeImageEditToolbarTo(0);
     }
 
     private void FadeWindowControlsTo(double opacity)
@@ -380,5 +443,18 @@ public partial class MainWindow : Window
         };
 
         WindowControls.BeginAnimation(OpacityProperty, animation, HandoffBehavior.SnapshotAndReplace);
+    }
+
+    private void FadeImageEditToolbarTo(double opacity)
+    {
+        var animation = new DoubleAnimation
+        {
+            To = opacity,
+            Duration = ControlsFadeDuration,
+            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut },
+            FillBehavior = FillBehavior.HoldEnd
+        };
+
+        ImageEditToolbar.BeginAnimation(OpacityProperty, animation, HandoffBehavior.SnapshotAndReplace);
     }
 }

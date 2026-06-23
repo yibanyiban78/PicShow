@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PicShow.Views;
@@ -116,9 +117,84 @@ public partial class PreviewHostView : System.Windows.Controls.UserControl
         ZoomBy(1.0 / ZoomStep);
     }
 
+    public void RotateClockwise()
+    {
+        ApplyBitmapTransform(new RotateTransform(90));
+    }
+
+    public void RotateCounterClockwise()
+    {
+        ApplyBitmapTransform(new RotateTransform(-90));
+    }
+
+    public void FlipHorizontal()
+    {
+        ApplyBitmapTransform(new ScaleTransform(-1, 1));
+    }
+
+    public void FlipVertical()
+    {
+        ApplyBitmapTransform(new ScaleTransform(1, -1));
+    }
+
+    public void SaveCurrentImageEdits()
+    {
+        if (currentBitmap is null || CurrentFile is null)
+        {
+            return;
+        }
+
+        if (CurrentFile.Kind is MediaKind.AnimatedGif or MediaKind.Svg or MediaKind.Psd or MediaKind.Pdf)
+        {
+            throw new NotSupportedException("当前格式暂不支持直接保存修改。");
+        }
+
+        var encoder = CreateEncoder(CurrentFile.Path);
+        encoder.Frames.Add(BitmapFrame.Create(currentBitmap));
+
+        var folder = Path.GetDirectoryName(CurrentFile.Path);
+        var tempPath = Path.Combine(string.IsNullOrWhiteSpace(folder) ? Path.GetTempPath() : folder, $".{Path.GetFileName(CurrentFile.Path)}.picshow.tmp");
+
+        using (var stream = File.Open(tempPath, FileMode.Create, FileAccess.Write, FileShare.None))
+        {
+            encoder.Save(stream);
+        }
+
+        File.Copy(tempPath, CurrentFile.Path, overwrite: true);
+        File.Delete(tempPath);
+    }
+
     private static void OnCurrentFileChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
     {
         ((PreviewHostView)dependencyObject).LoadCurrentFile();
+    }
+
+    private void ApplyBitmapTransform(Transform transform)
+    {
+        if (currentBitmap is null)
+        {
+            return;
+        }
+
+        var transformed = new TransformedBitmap(currentBitmap, transform);
+        transformed.Freeze();
+        currentBitmap = transformed;
+        PreviewImage.Source = transformed;
+        BitmapLoaded?.Invoke(this, new System.Windows.Size(transformed.Width, transformed.Height));
+        FitToView();
+    }
+
+    private static BitmapEncoder CreateEncoder(string path)
+    {
+        var extension = Path.GetExtension(path).ToLowerInvariant();
+        return extension switch
+        {
+            ".jpg" or ".jpeg" => new JpegBitmapEncoder { QualityLevel = 95 },
+            ".png" => new PngBitmapEncoder(),
+            ".bmp" => new BmpBitmapEncoder(),
+            ".tif" or ".tiff" => new TiffBitmapEncoder(),
+            _ => throw new NotSupportedException("当前格式暂不支持直接保存修改。")
+        };
     }
 
     private void LoadCurrentFile()

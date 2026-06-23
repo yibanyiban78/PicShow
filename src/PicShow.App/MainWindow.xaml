@@ -40,5 +40,39 @@
                     ToolTip="关闭"
                     Click="CloseButton_Click" />
         </StackPanel>
+
+        <Border x:Name="ImageEditToolbar"
+                Style="{StaticResource ImageEditToolbar}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,18"
+                MouseEnter="ImageEditToolbar_MouseEnter"
+                MouseMove="ImageEditToolbar_MouseMove">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource ImageEditToolbarButton}"
+                        Content="↶"
+                        ToolTip="逆时针旋转 90°"
+                        Click="RotateCounterClockwiseButton_Click" />
+                <Button Style="{StaticResource ImageEditToolbarButton}"
+                        Content="↷"
+                        ToolTip="顺时针旋转 90°"
+                        Click="RotateClockwiseButton_Click" />
+                <Button Style="{StaticResource ImageEditToolbarButton}"
+                        Content="⇋"
+                        ToolTip="水平镜像翻转"
+                        Click="FlipHorizontalButton_Click" />
+                <Button Style="{StaticResource ImageEditToolbarButton}"
+                        Content="⇅"
+                        ToolTip="垂直镜像翻转"
+                        Click="FlipVerticalButton_Click" />
+                <Separator Style="{StaticResource ImageEditToolbarSeparator}" />
+                <Button Style="{StaticResource ImageEditToolbarButton}"
+                        Content="保存"
+                        MinWidth="54"
+                        FontSize="13"
+                        ToolTip="保存修改"
+                        Click="SaveImageButton_Click" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
