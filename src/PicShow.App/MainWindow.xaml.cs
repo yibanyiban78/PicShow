@@ -299,14 +299,19 @@ public partial class MainWindow : Window
             ViewModel.OpenFileFromDialog();
             e.Handled = true;
         }
-        else if (e.Key == Key.Left)
+        else if (e.Key == Key.Up)
         {
             ViewModel.PreviousCommand.Execute(null);
             e.Handled = true;
         }
-        else if (e.Key == Key.Right)
+        else if (e.Key == Key.Down)
         {
             ViewModel.NextCommand.Execute(null);
+            e.Handled = true;
+        }
+        else if (e.Key == Key.Escape)
+        {
+            Close();
             e.Handled = true;
         }
     }

@@ -106,16 +106,22 @@
                         </TextBlock>
                         <TextBlock Width="42" />
                         <TextBlock Style="{StaticResource WelcomeHintText}">
-                            <Run Text="键盘左右方向键" FontWeight="SemiBold" />
+                            <Run Text="键盘上下方向键" FontWeight="SemiBold" />
                             <Run Text=" | " FontWeight="Regular" />
                             <Run Text="上一张/下一张" FontWeight="Regular" />
+                        </TextBlock>
+                        <TextBlock Width="42" />
+                        <TextBlock Style="{StaticResource WelcomeHintText}">
+                            <Run Text="ESC 键" FontWeight="SemiBold" />
+                            <Run Text=" | " FontWeight="Regular" />
+                            <Run Text="退出程序" FontWeight="Regular" />
                         </TextBlock>
                     </StackPanel>
 
                     <TextBlock Text="当前支持 JPG、PNG、BMP、TIFF、ICO 格式"
                                Style="{StaticResource WelcomeMetaText}" />
                     <Border Height="12" />
-                    <TextBlock Text="v1.1.0"
+                    <TextBlock Text="v1.1.1"
                                Style="{StaticResource WelcomeMetaText}" />
                     <TextBlock Text="软件作者：壹伴壹伴，欢迎抖音联系，此为开源免费软件，欢迎传播共享，就是不爽 WPS 弹窗广告"
                                Style="{StaticResource WelcomeAuthorText}" />

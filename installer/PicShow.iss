@@ -1,5 +1,5 @@
 #define MyAppName "PicShow"
-#define MyAppVersion "1.1.0"
+#define MyAppVersion "1.1.1"
 #define MyAppPublisher "壹伴壹伴"
 #define MyAppExeName "PicShow.exe"
 #define MyAppId "{{8CDBF86D-2595-4D41-87D2-7B2F4D8825F3}"

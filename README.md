@@ -27,13 +27,13 @@ PicShow 鍥剧墖绉€鏄竴涓潰鍚?Windows 10 鍙婁互涓婄増鏈
 
 鍙粠 GitHub Release 涓嬭浇鏈€鏂扮増鏈細
 
-[PicShow v1.1.0 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.1.0)
+[PicShow v1.1.1 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.1.1)
 
 鎺ㄨ崘涓嬭浇锛?
-- `PicShow-v1.1.0-setup-win-x64.exe`锛氳嚜鍖呭惈 Windows 瀹夎鍖咃紝鐢ㄦ埛鏃犻渶棰濆瀹夎 .NET 杩愯鏃躲€?
+- `PicShow-v1.1.1-setup-win-x64.exe`锛氳嚜鍖呭惈 Windows 瀹夎鍖咃紝鐢ㄦ埛鏃犻渶棰濆瀹夎 .NET 杩愯鏃躲€?
 渚挎惡鐗堬細
 
-- `PicShow-v1.1.0-win-x64.zip`锛氫究鎼虹増鍙墽琛屾枃浠跺帇缂╁寘銆?
+- `PicShow-v1.1.1-win-x64.zip`锛氫究鎼虹増鍙墽琛屾枃浠跺帇缂╁寘銆?
 ### 杩愯瑕佹眰
 
 鑷寘鍚畨瑁呭寘锛?
@@ -76,7 +76,7 @@ dotnet publish .\src\PicShow.App\PicShow.App.csproj -c Release -r win-x64 --self
 
 杈撳嚭鏂囦欢锛?
 ```text
-publish\installer\PicShow-v1.1.0-setup-win-x64.exe
+publish\installer\PicShow-v1.1.1-setup-win-x64.exe
 ```
 
 ### 鏂囦欢鍏宠仈璇存槑
@@ -106,7 +106,8 @@ It is free and open source. The reason for building it is simple: pop-up ads in 
 
 - Borderless image preview window with adaptive sizing.
 - Mouse wheel zoom, drag-to-pan when the image is larger than the view.
-- Keyboard navigation with left and right arrow keys.
+- Use the Up arrow for the previous image and the Down arrow for the next image.
+- Press Esc to exit PicShow.
 - Transparent-background display for PNG and other alpha-capable images.
 - Startup welcome page with drag-and-drop and `Ctrl+O` open flow.
 - Double-click image opening after registering PicShow as an image viewer.
@@ -134,15 +135,15 @@ Planned:
 
 Download the latest release from GitHub:
 
-[PicShow v1.1.0 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.1.0)
+[PicShow v1.1.1 Release](https://github.com/yibanyiban78/PicShow/releases/tag/v1.1.1)
 
 Recommended download:
 
-- `PicShow-v1.1.0-setup-win-x64.exe`: self-contained Windows installer, no extra .NET runtime required.
+- `PicShow-v1.1.1-setup-win-x64.exe`: self-contained Windows installer, no extra .NET runtime required.
 
 Portable option:
 
-- `PicShow-v1.1.0-win-x64.zip`: portable executable package.
+- `PicShow-v1.1.1-win-x64.zip`: portable executable package.
 
 ### Requirements
 
@@ -198,7 +199,7 @@ Build the self-contained installer:
 Output:
 
 ```text
-publish\installer\PicShow-v1.1.0-setup-win-x64.exe
+publish\installer\PicShow-v1.1.1-setup-win-x64.exe
 ```
 
 ### File Association Notes
